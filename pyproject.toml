@@ -1,0 +1,29 @@
+[project]
+name = "meal-planner"
+version = "0.1.0"
+description = "AI Agent to help with meal planning"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.1",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.7",
+]
+
+[tool.ruff]
+line-length = 120
+
+[tool.pytest.ini_options]
+pythonpath = ["meal_planner"]
+minversion = "6.0"
+addopts = "--cov=meal_planner --cov-report=term-missing"
+testpaths = [
+    "tests",
+]
+
+[tool.coverage.report]
+fail_under = 80
