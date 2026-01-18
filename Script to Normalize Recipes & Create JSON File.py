@@ -7,11 +7,6 @@
 import re
 import json
 import pandas as pd
-from pathlib import Path
-
-
-# In[ ]:
-
 
 # =============================
 # CONFIG
@@ -78,8 +73,9 @@ def parse_quantity(q):
         return int(m.group(1)) / int(m.group(2))
     try:
         return float(q)
-    except:
+    except (TypeError, ValueError):
         return None
+
 
 def parse_ingredient_line(line):
     raw = line.strip()
@@ -111,13 +107,14 @@ def parse_ingredient_line(line):
 def split_ingredients(cell):
     if pd.isna(cell):
         return []
-    lines = [l.strip() for l in str(cell).split("\n") if l.strip()]
+    lines = [line.strip() for line in str(cell).split("\n") if line.strip()]
     out = []
-    for l in lines:
-        if l.lower().strip(":") in SECTION_HEADERS:
+    for line in lines:
+        if line.lower().strip(":") in SECTION_HEADERS:
             continue
-        out.append(parse_ingredient_line(l))
+        out.append(parse_ingredient_line(line))
     return out
+
 
 def split_instructions(cell):
     if pd.isna(cell):
