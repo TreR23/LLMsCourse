@@ -1,4 +1,6 @@
+import json
 import re
+from pathlib import Path
 from typing import Dict, Iterable, List
 
 
@@ -24,3 +26,40 @@ class SimpleTokenizer:
         text = " ".join([self.int_to_str[i] for i in ids])
         text = re.sub(r"\s+([,.:;?!" r"()\'])", r"\1", text)
         return text
+
+
+def load_star_wars_dataset(path: Path) -> list[str]:
+    """
+    Load Star Wars dataset lines from a JSON file.
+
+    Expected format:
+      [
+        {"Character": "...", "Line": "..."},
+        ...
+      ]
+
+    Returns a list of the "Line" strings (non-empty).
+    """
+    path = Path(path)
+    if not path.exists() or path.suffix.lower() != ".json":
+        return []
+
+    try:
+        raw = path.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        raw = path.read_text(encoding="utf-8-sig")
+
+    data = json.loads(raw)
+    if not isinstance(data, list):
+        return []
+
+    lines: list[str] = []
+    for item in data:
+        if isinstance(item, dict):
+            line = item.get("Line")
+            if isinstance(line, str):
+                line = line.strip()
+                if line:
+                    lines.append(line)
+
+    return lines
