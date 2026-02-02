@@ -1,6 +1,6 @@
-# Meal Planner
+# LLM Course
 
-An AI Agent to help with meal planning
+LLM course homework
 
 
 ## Setup
