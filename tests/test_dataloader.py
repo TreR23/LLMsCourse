@@ -4,7 +4,8 @@ from pathlib import Path
 
 import torch
 
-from dataloader import StarWarsDataset, make_starwars_dataloader
+from src.dataloader import StarWarsDataset, make_starwars_dataloader
+
 
 
 def test_starwars_dataset_len_and_item() -> None:
