@@ -7,7 +7,6 @@ import torch
 from src.dataloader import StarWarsDataset, make_starwars_dataloader
 
 
-
 def test_starwars_dataset_len_and_item() -> None:
     dataset = StarWarsDataset("SW_EpisodeIV_VI.json")
 
