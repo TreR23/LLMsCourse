@@ -174,4 +174,6 @@ datasets/
 
 # Hugging Face caches
 .hf/
+# Datasets (HW2)
+SW_EpisodeIV_VI.json
 
