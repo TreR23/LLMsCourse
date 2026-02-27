@@ -717,6 +717,7 @@ source = { virtual = "." }
 dependencies = [
     { name = "datasets" },
     { name = "evaluate" },
+    { name = "numpy" },
     { name = "scikit-learn" },
     { name = "torch" },
     { name = "transformers" },
@@ -733,7 +734,9 @@ dev = [
 requires-dist = [
     { name = "datasets", specifier = ">=4.5.0" },
     { name = "evaluate", specifier = ">=0.4.6" },
+    { name = "numpy" },
     { name = "scikit-learn", specifier = ">=1.8.0" },
+    { name = "torch" },
     { name = "torch", specifier = ">=2.10.0" },
     { name = "transformers", specifier = ">=5.1.0" },
 ]
